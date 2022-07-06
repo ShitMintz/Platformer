@@ -15,9 +15,29 @@ enum state {Attack, Fall, Pushing, Jump, StartJump, Idle, Roll, Running}
 onready var Player_state = state.Idle
 
 func update_animation(anim):
+	if velocity.x < 0:
+		$Sprite.flip_h = true
+	elif velocity.x > 0:
+		$Sprite.flip_h = false
+	match(anim):
+		state.Fall:
+			$AnimationPlayer.play("Fall")
+		state.Running:
+			$AnimationPlayer.play("Running")
+		state.Pushing:
+			$AnimationPlayer.play("Pushing")
+		state.Attack:
+			$AnimationPlayer.play("Attack")
+		state.Idle:
+			$AnimationPlayer.play("Idle")
+		state.Jump:
+			$AnimationPlayer.play("Jump")
 	pass
 
-func handle_state(state):
+func handle_state(Player_state):
+	match(Player_state):
+		state.StartJump:
+			velocity.y = jump_speed
 	pass
 
 func get_input():
@@ -29,16 +49,16 @@ func get_input():
 
 func _physics_process(delta):
 	get_input()
-	if velocity.x == Vector2.ZERO:
+	if velocity == Vector2.ZERO:
 		Player_state = state.Idle
-	elif Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("up") and is_on_floor():
 		Player_state = state.StartJump
 	elif velocity.x != 0:
 		Player_state = state.Running
 	
 	if not is_on_floor():
 		if velocity.y < 0:
-			Player_state = state.jump
+			Player_state = state.Jumps
 		if velocity.y > 0:
 			Player_state = state.Fall
 

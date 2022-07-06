@@ -14,6 +14,13 @@ config/name="Platformer"
 run/main_scene="res://Scenes/Player.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=300
+window/size/height=200
+window/size/test_width=1200
+window/size/test_height=800
+
 [importer_defaults]
 
 texture={
