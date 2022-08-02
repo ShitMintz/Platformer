@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/tiles/tileset.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/swinging trap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/SpikeTrap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/DoorAndButton.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -206,8 +208,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 13, 19 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 21 )
 cell_size = Vector2( 16, 16 )
@@ -219,3 +219,21 @@ position = Vector2( 32, 61 )
 
 [node name="swinging trap" parent="." instance=ExtResource( 3 )]
 position = Vector2( 203, 0 )
+
+[node name="Area2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 63, 5 )
+
+[node name="Area2D2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 126, 43 )
+rotation = -3.14159
+
+[node name="DoorAndButton" parent="." instance=ExtResource( 5 )]
+position = Vector2( 469, 161 )
+
+[node name="Button" parent="DoorAndButton" index="0"]
+position = Vector2( -125, -99 )
+
+[node name="Door" parent="DoorAndButton" index="1"]
+position = Vector2( 52, -105 )
+
+[editable path="DoorAndButton"]
