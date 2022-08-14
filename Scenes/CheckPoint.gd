@@ -5,12 +5,12 @@ func _ready():
 	$AnimationPlayer.play("CheckPoint")
 	
 func _Process(delta):
-	if Game_Scripts.get_spawned() != self:
+	if GameScripts.get_spawned() != self:
 		$AnimationPlayer.play("CheckPoint")
 
 
 
-
-
 func _on_CheckPoint_body_entered(body):
-	pass # Replace with function body.
+	if body.is_in_group("Player"):
+		GameScripts.set_spawn(self)
+		$AnimationPlayer.play("Saved")

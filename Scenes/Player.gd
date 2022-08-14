@@ -71,3 +71,7 @@ func _physics_process(delta):
 func _ready():
 	$AnimationPlayer.play("Idle")
 	pass
+
+
+func _on_DeathZone_area_entered(area):
+	pass # Replace with function body.
