@@ -4,7 +4,7 @@ extends Area2D
 func _ready():
 	$AnimationPlayer.play("CheckPoint")
 	
-func _Process(delta):
+func _Process(_delta):
 	if GameScripts.get_spawned() != self:
 		$AnimationPlayer.play("CheckPoint")
 

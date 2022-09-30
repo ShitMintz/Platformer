@@ -74,4 +74,6 @@ func _ready():
 
 
 func _on_DeathZone_area_entered(area):
-	pass # Replace with function body.
+	if area.is_in_group("Deadly"):
+		if GameScripts.check_reset() == false:
+			global_position = GameScripts.get_spawn().global_position
